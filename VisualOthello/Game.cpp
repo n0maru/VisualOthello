@@ -51,30 +51,6 @@ void Game::start()
 	Game::decide_first_player();
 
 	std::cout << "First player is " << this->player_str[this->first_player] << std::endl;
-
-	BoardStatus now_turn_player = this->first_player;
-
-	while (!Game::is_finished())
-	{
-		Game::print_board(now_turn_player);
-
-		// TODO: そのターンでnow_turn_playerが置けるかの判別
-		// TODO: パスするときの表示
-		Coordinate input = players[now_turn_player]->calc(board);
-
-		if (Game::set_stone(input, now_turn_player))
-		{
-			std::cout << "置きました" << std::endl;
-		}
-		else
-		{
-			std::cout << "置けませんでした" << std::endl;
-		}
-
-		now_turn_player = Game::get_enemy(now_turn_player);
-	}
-
-	Game::game_over();
 }
 
 void Game::print_board(BoardStatus now_turn_player)
@@ -264,4 +240,14 @@ BoardStatus Game::decide_first_player()
 	this->first_player = (BoardStatus)(rand() % 2);
 
 	return this->first_player;
+}
+
+BoardStatus Game::get_first_player()
+{
+	return this->first_player;
+}
+
+Coordinate Game::calc(BoardStatus now_turn_player)
+{
+	return this->players[now_turn_player]->calc(this->board);
 }

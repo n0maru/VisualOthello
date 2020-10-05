@@ -25,5 +25,7 @@ public:
 	bool is_finished();
 	BoardStatus get_enemy(BoardStatus player);
 	BoardStatus decide_first_player();
+	BoardStatus get_first_player();
+	Coordinate calc(BoardStatus now_turn_player);
 };
 

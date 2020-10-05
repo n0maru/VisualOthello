@@ -139,14 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\VisualOthello\AIPlayer.cpp" />
+    <ClCompile Include="..\VisualOthello\RandomAI.cpp" />
     <ClCompile Include="..\VisualOthello\Game.cpp" />
     <ClCompile Include="..\VisualOthello\PersonPlayer.cpp" />
     <ClCompile Include="..\VisualOthello\Player.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\VisualOthello\AIPlayer.h" />
+    <ClInclude Include="..\VisualOthello\RandomAI.h" />
     <ClInclude Include="..\VisualOthello\Game.h" />
     <ClInclude Include="..\VisualOthello\PersonPlayer.h" />
     <ClInclude Include="..\VisualOthello\Player.h" />
