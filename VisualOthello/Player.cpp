@@ -33,13 +33,6 @@ bool Player::can_put(Coordinate coordinate, BoardStatus player, std::vector<std:
 	const int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 	const BoardStatus enemy = Player::get_enemy(player);
 
-	// デバッグ用
-	if (enemy == NONE)
-	{
-		std::cout << "NONE" << std::endl;
-		return false;
-	}
-
 	for (int i = 0; i < 8; i++)
 	{
 		int delta = 1;
