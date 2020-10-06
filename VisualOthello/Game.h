@@ -39,5 +39,3 @@ public:
 	int count_point(BoardStatus player);
 	GameStatus get_game_status();
 };
-
-// TODO: Ÿ”sŒˆ’è‚Ì•ª‚©‚è‚â‚·‚¢•\¦
