@@ -58,7 +58,7 @@ void Game::print_board(BoardStatus now_turn_player)
 	std::cout << std::endl;
 	for (int i = 0; i < 2; i++)
 	{
-		std::cout << this->player_str[i] << " : " << this->players[i]->get_name() << std::endl;
+		std::cout << this->player_str[i] << " : " << this->players[i]->get_name() << Game::count_point((BoardStatus)i) << std::endl;
 	}
 	std::cout << std::endl;
 	std::cout << this->player_str[now_turn_player] << "'s turn" << std::endl;
