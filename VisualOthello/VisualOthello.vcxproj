@@ -111,7 +111,6 @@
     <ClCompile Include="GameVisual.cpp" />
     <ClCompile Include="RandomAI.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PersonPlayer.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -241,7 +240,6 @@
   <ItemGroup>
     <ClInclude Include="RandomAI.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="PersonPlayer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>

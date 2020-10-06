@@ -9,8 +9,6 @@ Coordinate PersonPlayer::calc(std::vector<std::vector<BoardStatus>> board)
 	int x, y;
 	char c;
 
-
-	// TODO: クリックによる入力機能
 	do
 	{
 		std::cout << std::endl;
