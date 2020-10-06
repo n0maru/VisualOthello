@@ -6,6 +6,7 @@
 ## Application
 *.exe
 *.html
+*.txt
 
 # User-specific files
 *.rsuser
