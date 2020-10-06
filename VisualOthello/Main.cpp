@@ -1,13 +1,15 @@
-﻿#include <Siv3D.hpp>
-#include "Game.h"
+﻿#include "Game.h"
 #include "Player.h"
 #include "RandomAI.h"
+#include <Siv3D.hpp>
 
 void cvt_char32(char *str, char32_t *str32);
 
 void Main(void)
 {
 	Scene::SetBackground(Palette::Chocolate);
+	const Font font(20);
+	const double LapTime = 0.5;
 
 	double time = 0.0;
 	bool finish_flag = false;
@@ -17,26 +19,22 @@ void Main(void)
 
 	game.start();
 	BoardStatus now_turn_player = game.get_first_player();
+	BoardStatus winner;
 
 	while (System::Update())
 	{
+		game.print_first_turn(font);
+		game.print_info(font);
 		game.print_board(Player1);
+		if(finish_flag) game.print_winner(winner, font);
+		else game.print_status(game.get_enemy(now_turn_player), font, game.get_game_status());
 
 		time += Scene::DeltaTime();
 
-		if (time >= 0.5)
+		if (time >= LapTime)
 		{
 			if (!finish_flag)
 			{
-				ClearPrint();
-
-				game.print_name();
-
-				game.print_name(&player1);
-				Print << U" : " << game.count_point(Player1);
-				game.print_name(&player2);
-				Print << U" : " << game.count_point(Player2);
-
 				if (!game.is_finished())
 				{
 					// そのターンでnow_turn_playerが置けるかの判別
@@ -59,23 +57,23 @@ void Main(void)
 
 						if (game.set_stone(input, now_turn_player))
 						{
-							Print << U"置きました";
+							game.set_status(SET);
 						}
 						else
 						{
-							Print << U"置けませんでした";
+							game.set_status(CANNOT_SET);
 						}
 					}
 					else
 					{
-						Print << U"パスしました";
+						game.set_status(PASS);
 					}
 
 					now_turn_player = game.get_enemy(now_turn_player);
 				}
 				else
 				{
-					game.game_over();
+					winner = game.game_over(font);
 					finish_flag = true;
 				}
 			}

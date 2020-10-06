@@ -37,7 +37,7 @@ Game::Game(Player* player1, Player* player2)
 	this->players[1]->set_player_num(Player2);
 
 	// first_player
-	this->first_player = Player1;
+	this->first_player = Player2;
 
 	// player_str
 	for (int i = 0; i < 8; i++)
@@ -45,6 +45,9 @@ Game::Game(Player* player1, Player* player2)
 		this->player_str[0][i] = "Player1"[i];
 		this->player_str[1][i] = "Player2"[i];
 	}
+
+	// game status
+	this->game_status = PASS;
 }
 
 void Game::start()
@@ -132,7 +135,7 @@ bool Game::set_stone(Coordinate coordinate, BoardStatus player)
 	return false;
 }
 
-void Game::game_over()
+BoardStatus Game::game_over(Font font)
 {
 	std::vector<int> point(2, 0);
 	for (int y = 1; y <= 8; y++)
@@ -143,29 +146,59 @@ void Game::game_over()
 		}
 	}
 
-	// TODO: 勝敗決定時の分かりやすい表示
+	return (point[0] > point[1]) ? Player1 : Player2;
+}
 
-	if (point[Player1] > point[Player2])
+void Game::print_info(Font font)
+{
+	font( U"White").drawAt(570, 250);
+	font(U"Black").drawAt(720, 250, Palette::Black);
+
+	Game::print_name(this->players[0], font, 570, 280);
+	Game::print_name(this->players[1], font, 720, 280, Palette::Black);
+
+	font(Game::count_point(Player1)).drawAt(570, 310);
+	font(Game::count_point(Player2)).drawAt(720, 310, Palette::Black);
+}
+
+void Game::set_status(GameStatus status)
+{
+	this->game_status = status;
+}
+
+void Game::print_status(BoardStatus player, Font font, GameStatus status)
+{
+	Game::print_name(this->players[player], font, 570, 400);
+
+	char32_t status_str[][10] = {
+		U"置きました",
+		U"置けませんでした",
+		U"パスしました"
+	};
+
+	font(U" :", status_str[status]).drawAt(700, 400);
+}
+
+void Game::print_winner(BoardStatus winner, Font font)
+{
+	if (winner == NONE)
 	{
-		Print << U"Winner is "; Game::print_name(this->players[Player1]);
-	}
-	else if (point[Player1] < point[Player2])
-	{
-		Print << U"Winner is "; Game::print_name(this->players[Player2]);
+		font(U"Draw ! !").drawAt(570, 400);
 	}
 	else
 	{
-		Print << U"Draw";
+		font(U"Winner is ").drawAt(570, 400);
+		Game::print_name(this->players[winner], font, 680, 400);
 	}
 }
 
-void Game::print_name()
+void Game::print_first_turn(Font font)
 {
-	Print << U"White : "; Game::print_name(this->players[Player1]);
-	Print << U"Black : "; Game::print_name(this->players[Player2]);
+	font(U"先行は ").drawAt(570, 100);
+	Game::print_name(this->players[this->first_player], font, 650, 100);
 }
 
-void Game::print_name(Player* player)
+void Game::print_name(Player* player, Font font, int x, int y)
 {
 	std::string name = player->get_name();
 
@@ -176,7 +209,21 @@ void Game::print_name(Player* player)
 		name_char32[i] = name[i];
 	}
 
-	Print << name_char32;
+	font(name_char32).drawAt(x, y);
+}
+
+void Game::print_name(Player* player, Font font, int x, int y, Color color)
+{
+	std::string name = player->get_name();
+
+	char32_t name_char32[100] = { '\n' };
+
+	for (int i = 0; i < name.size(); i++)
+	{
+		name_char32[i] = name[i];
+	}
+
+	font(name_char32).drawAt(x, y, color);
 }
 
 bool Game::can_put(Coordinate coordinate, BoardStatus player)
@@ -193,13 +240,6 @@ bool Game::can_put(Coordinate coordinate, BoardStatus player)
 	const int dx[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	const int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 	const BoardStatus enemy = Game::get_enemy(player);
-
-	// デバッグ用
-	if (enemy == NONE)
-	{
-		Print << U"NONE";
-		return false;
-	}
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -283,4 +323,9 @@ int Game::count_point(BoardStatus player)
 	}
 
 	return count;
+}
+
+GameStatus Game::get_game_status()
+{
+	return this->game_status;
 }

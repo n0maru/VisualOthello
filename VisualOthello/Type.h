@@ -8,6 +8,13 @@ enum BoardStatus
 	WALL
 };
 
+enum GameStatus
+{
+	SET,
+	CANNOT_SET,
+	PASS
+};
+
 struct Coordinate
 {
 	int x;
