@@ -16,6 +16,5 @@ public:
 	bool is_inside(Coordinate coordinate);
 	bool can_put(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);
 	BoardStatus get_enemy(BoardStatus player);
-	// TODO: get_name‚Å•Ô‚³‚ê‚é•¶š—ñ‚ğ‚»‚Ì‚Ü‚ÜPrint‚µ‚½‚çƒGƒ‰[“f‚­–â‘è
 	std::string get_name();
 };
