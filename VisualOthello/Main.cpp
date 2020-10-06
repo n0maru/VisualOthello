@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "RandomAI.h"
 
+void cvt_char32(char *str, char32_t *str32);
+
 void Main(void)
 {
 	Scene::SetBackground(Palette::Chocolate);
@@ -29,7 +31,11 @@ void Main(void)
 				ClearPrint();
 
 				game.print_name();
-				// TODO: 毎ターンポイントを計算する
+
+				game.print_name(&player1);
+				Print << U" : " << game.count_point(Player1);
+				game.print_name(&player2);
+				Print << U" : " << game.count_point(Player2);
 
 				if (!game.is_finished())
 				{
@@ -76,5 +82,13 @@ void Main(void)
 
 			time = 0.0;
 		}
+	}
+}
+
+void cvt_char32(char* str, char32_t* str32)
+{
+	for (int i = 0; i < 8; i++)
+	{
+		str32[i] = str[i];
 	}
 }

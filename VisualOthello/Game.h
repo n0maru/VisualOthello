@@ -29,5 +29,6 @@ public:
 	BoardStatus decide_first_player();
 	BoardStatus get_first_player();
 	Coordinate calc(BoardStatus now_turn_player);
+	int count_point(BoardStatus player);
 };
 

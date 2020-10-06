@@ -144,7 +144,6 @@ void Game::game_over()
 	}
 
 	// TODO: Ÿ”sŒˆ’è‚Ì•ª‚©‚è‚â‚·‚¢•\¦
-	Print << point[Player1] << U" : " << point[Player2];
 
 	if (point[Player1] > point[Player2])
 	{
@@ -267,4 +266,21 @@ BoardStatus Game::get_first_player()
 Coordinate Game::calc(BoardStatus now_turn_player)
 {
 	return this->players[now_turn_player]->calc(this->board);
+}
+
+int Game::count_point(BoardStatus player)
+{
+	int count = 0;
+	for (int y = 1; y <= 8; y++)
+	{
+		for (int x = 1; x <= 8; x++)
+		{
+			if (this->board[y][x] == player)
+			{
+				++count;
+			}
+		}
+	}
+
+	return count;
 }
