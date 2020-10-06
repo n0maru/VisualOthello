@@ -19,6 +19,8 @@ public:
 	void start();
 	void print_board(BoardStatus now_turn_player);
 	void game_over();
+	void print_name();
+	void print_name(Player* player);
 	bool set_stone(Coordinate coordinate, BoardStatus player);
 	bool can_put(Coordinate coordinate, BoardStatus player);
 	bool is_inside(Coordinate coordinate);

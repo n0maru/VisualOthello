@@ -1,4 +1,5 @@
 #pragma once
+
 enum BoardStatus
 {
 	Player1,

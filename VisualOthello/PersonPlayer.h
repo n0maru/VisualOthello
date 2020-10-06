@@ -1,11 +1,12 @@
 #pragma once
 #include "Type.h"
 #include "Player.h"
+#include <string>
 
 class PersonPlayer : public Player
 {
 public:
-	PersonPlayer();
+	PersonPlayer(std::string name);
 	Coordinate calc(std::vector<std::vector<BoardStatus>> board);
 };
 

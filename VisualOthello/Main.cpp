@@ -1,26 +1,80 @@
 ﻿#include <Siv3D.hpp>
+#include "Game.h"
+#include "Player.h"
+#include "RandomAI.h"
 
 void Main(void)
 {
-	Scene::SetBackground(ColorF(1.0, 1.0, 1.0));
+	Scene::SetBackground(Palette::Chocolate);
 
-	int size = 50;
-	int start = 100;
-	int r = size / 2;
+	double time = 0.0;
+	bool finish_flag = false;
+
+	RandomAI player1(std::string("Left Up AI")), player2(std::string("Random AI"));
+	Game game(&player1, &player2);
+
+	game.start();
+	BoardStatus now_turn_player = game.get_first_player();
 
 	while (System::Update())
 	{
-		// 線を黒色にする
-		Rect(start - 1, start - 1, size * 8 + 9).draw(Palette::Black);
+		game.print_board(Player1);
 
-		// 盤面の描画
-		for (int y = 0; y < 8; y++)
+		time += Scene::DeltaTime();
+
+		if (time >= 0.5)
 		{
-			for (int x = 0; x < 8; x++)
+			if (!finish_flag)
 			{
-				Rect(start + x * size + x, start + y * size + y, size).draw(Palette::Green);
-				Circle(start + x * size + x + r, start + y * size + y + r, r).draw(Palette::White);
+				ClearPrint();
+
+				game.print_name();
+				// TODO: 毎ターンポイントを計算する
+
+				if (!game.is_finished())
+				{
+					// そのターンでnow_turn_playerが置けるかの判別
+					bool can_put_flag = false;
+
+					for (int y = 1; !can_put_flag && y <= 8; y++)
+					{
+						for (int x = 1; !can_put_flag && x <= 8; x++)
+						{
+							if (game.can_put(Coordinate{ x, y }, now_turn_player))
+							{
+								can_put_flag = true;
+							}
+						}
+					}
+
+					if (can_put_flag)
+					{
+						Coordinate input = game.calc(now_turn_player);
+
+						if (game.set_stone(input, now_turn_player))
+						{
+							Print << U"置きました";
+						}
+						else
+						{
+							Print << U"置けませんでした";
+						}
+					}
+					else
+					{
+						Print << U"パスしました";
+					}
+
+					now_turn_player = game.get_enemy(now_turn_player);
+				}
+				else
+				{
+					game.game_over();
+					finish_flag = true;
+				}
 			}
+
+			time = 0.0;
 		}
 	}
 }

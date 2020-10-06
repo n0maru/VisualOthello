@@ -5,7 +5,7 @@
 class RandomAI : public Player
 {
 public:
-	RandomAI();
+	RandomAI(std::string name);
 	Coordinate calc(std::vector<std::vector<BoardStatus>> board);
 };
 

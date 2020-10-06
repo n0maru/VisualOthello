@@ -1,6 +1,6 @@
 #include "RandomAI.h"
 
-RandomAI::RandomAI() : Player::Player()
+RandomAI::RandomAI(std::string name) : Player::Player(name)
 {
 }
 

@@ -105,13 +105,13 @@
     <ClCompile Include="Player.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="PersonPlayer.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="RandomAI.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameVisual.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>

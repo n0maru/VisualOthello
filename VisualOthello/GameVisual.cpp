@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <Siv3D.hpp>
 
 Game::Game(Player* player1, Player* player2)
 {
@@ -49,45 +50,40 @@ Game::Game(Player* player1, Player* player2)
 void Game::start()
 {
 	Game::decide_first_player();
-
-	std::cout << "First player is " << this->player_str[this->first_player] << std::endl;
 }
 
 void Game::print_board(BoardStatus now_turn_player)
 {
-	std::cout << std::endl;
-	for (int i = 0; i < 2; i++)
-	{
-		std::cout << this->player_str[i] << " : " << this->players[i]->get_name() << std::endl;
-	}
-	std::cout << std::endl;
-	std::cout << this->player_str[now_turn_player] << "'s turn" << std::endl;
+	int size = 50;
+	int start = 100;
+	int r = size / 2;
 
-	std::cout << "  a b c d e f g h" << std::endl;
+	// 線を黒色にする
+	Rect(start - 1, start - 1, size * 8 + 9).draw(Palette::Black);
+
+	// 盤面の描画
 	for (int y = 1; y <= 8; y++)
 	{
-		std::cout << y << " ";
 		for (int x = 1; x <= 8; x++)
 		{
+			Rect(start + (x - 1) * size + x - 1, start + (y - 1) * size + y - 1, size).draw(Palette::Green);
+
+			// コマを置く
 			switch (this->board[y][x])
 			{
 			case NONE:
-				std::cout << " ";
 				break;
 			case Player1:
-				std::cout << "O";
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::White);
 				break;
 			case Player2:
-				std::cout << "X";
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::Black);
 				break;
 			default:
-				std::cout << "?";
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::Red);
 				break;
 			}
-
-			std::cout << " ";
 		}
-		std::cout << std::endl;
 	}
 }
 
@@ -101,12 +97,6 @@ bool Game::set_stone(Coordinate coordinate, BoardStatus player)
 		const int dx[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 		const int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 		const BoardStatus enemy = Game::get_enemy(player);
-
-		// デバッグ用
-		if (enemy == NONE)
-		{
-			std::cout << "NONE" << std::endl;
-		}
 
 		for (int i = 0; i < 8; i++)
 		{
@@ -153,20 +143,41 @@ void Game::game_over()
 		}
 	}
 
-	std::cout << point[Player1] << " : " << point[Player2] << std::endl;
+	// TODO: 勝敗決定時の分かりやすい表示
+	Print << point[Player1] << U" : " << point[Player2];
 
 	if (point[Player1] > point[Player2])
 	{
-		std::cout << "Winner is " << this->players[Player1]->get_name() << std::endl;
+		Print << U"Winner is "; Game::print_name(this->players[Player1]);
 	}
-	else if (point[Player2] < point[Player1])
+	else if (point[Player1] < point[Player2])
 	{
-		std::cout << "Winner is " << this->players[Player2]->get_name() << std::endl;
+		Print << U"Winner is "; Game::print_name(this->players[Player2]);
 	}
 	else
 	{
-		std::cout << "Draw" << std::endl;
+		Print << U"Draw";
 	}
+}
+
+void Game::print_name()
+{
+	Print << U"White : "; Game::print_name(this->players[Player1]);
+	Print << U"Black : "; Game::print_name(this->players[Player2]);
+}
+
+void Game::print_name(Player* player)
+{
+	std::string name = player->get_name();
+
+	char32_t name_char32[100] = {'\n'};
+
+	for (int i = 0; i < name.size(); i++)
+	{
+		name_char32[i] = name[i];
+	}
+
+	Print << name_char32;
 }
 
 bool Game::can_put(Coordinate coordinate, BoardStatus player)
@@ -187,7 +198,7 @@ bool Game::can_put(Coordinate coordinate, BoardStatus player)
 	// デバッグ用
 	if (enemy == NONE)
 	{
-		std::cout << "NONE" << std::endl;
+		Print << U"NONE";
 		return false;
 	}
 

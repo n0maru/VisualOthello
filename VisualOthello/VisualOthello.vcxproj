@@ -108,8 +108,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameVisual.cpp" />
     <ClCompile Include="RandomAI.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PersonPlayer.cpp" />
     <ClCompile Include="Player.cpp" />

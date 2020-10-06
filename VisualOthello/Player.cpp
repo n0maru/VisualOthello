@@ -1,8 +1,11 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(std::string name)
 {
 	this->player_num = Player1;
+
+	this->name = name;
+	std::cout << this->name << std::endl;
 }
 
 void Player::set_player_num(BoardStatus player_num)
@@ -59,4 +62,9 @@ BoardStatus Player::get_enemy(BoardStatus player)
 	}
 
 	return NONE;
+}
+
+std::string Player::get_name()
+{
+	return this->name;
 }
