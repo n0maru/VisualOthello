@@ -135,15 +135,12 @@ bool Game::set_stone(Coordinate coordinate, BoardStatus player)
 	return false;
 }
 
-BoardStatus Game::game_over(Font font)
+BoardStatus Game::game_over()
 {
 	std::vector<int> point(2, 0);
-	for (int y = 1; y <= 8; y++)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int x = 1; x <= 8; x++)
-		{
-			++point[this->board[y][x]];
-		}
+		point[i] = Game::count_point((BoardStatus)i);
 	}
 
 	return (point[0] > point[1]) ? Player1 : Player2;
@@ -272,7 +269,10 @@ bool Game::is_finished()
 	{
 		for (int x = 1; x <= 8; x++)
 		{
-			if (Game::can_put(Coordinate{ x, y }, Player1) || Game::can_put(Coordinate{ x, y }, Player2)) return false;
+			if (Game::can_put(Coordinate{ x, y }, Player1) || Game::can_put(Coordinate{ x, y }, Player2))
+			{
+				return false;
+			}
 		}
 	}
 

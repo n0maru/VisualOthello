@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "GameConsole.h"
 
 Game::Game(Player* player1, Player* player2)
 {
@@ -58,7 +58,7 @@ void Game::print_board(BoardStatus now_turn_player)
 	std::cout << std::endl;
 	for (int i = 0; i < 2; i++)
 	{
-		std::cout << this->player_str[i] << " : " << this->players[i]->get_name() << Game::count_point((BoardStatus)i) << std::endl;
+		std::cout << this->player_str[i] << " : " << this->players[i]->get_name() <<  " : " << Game::count_point((BoardStatus)i) << std::endl;
 	}
 	std::cout << std::endl;
 	std::cout << this->player_str[now_turn_player] << "'s turn" << std::endl;
@@ -144,13 +144,12 @@ bool Game::set_stone(Coordinate coordinate, BoardStatus player)
 
 void Game::game_over()
 {
+	std::cout << "Game is over" << std::endl;
+
 	std::vector<int> point(2, 0);
-	for (int y = 1; y <= 8; y++)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int x = 1; x <= 8; x++)
-		{
-			++point[this->board[y][x]];
-		}
+		point[i] = Game::count_point((BoardStatus)i);
 	}
 
 	std::cout << point[Player1] << " : " << point[Player2] << std::endl;
@@ -159,7 +158,7 @@ void Game::game_over()
 	{
 		std::cout << "Winner is " << this->players[Player1]->get_name() << std::endl;
 	}
-	else if (point[Player2] < point[Player1])
+	else if (point[Player1] < point[Player2])
 	{
 		std::cout << "Winner is " << this->players[Player2]->get_name() << std::endl;
 	}
@@ -256,4 +255,21 @@ BoardStatus Game::get_first_player()
 Coordinate Game::calc(BoardStatus now_turn_player)
 {
 	return this->players[now_turn_player]->calc(this->board);
+}
+
+int Game::count_point(BoardStatus player)
+{
+	int count = 0;
+	for (int y = 1; y <= 8; y++)
+	{
+		for (int x = 1; x <= 8; x++)
+		{
+			if (this->board[y][x] == player)
+			{
+				++count;
+			}
+		}
+	}
+
+	return count;
 }

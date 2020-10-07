@@ -31,7 +31,7 @@ public:
 	bool can_put(Coordinate coordinate, BoardStatus player);
 	bool is_inside(Coordinate coordinate);
 	bool is_finished();
-	BoardStatus game_over(Font font);
+	BoardStatus game_over();
 	BoardStatus get_enemy(BoardStatus player);
 	BoardStatus decide_first_player();
 	BoardStatus get_first_player();
