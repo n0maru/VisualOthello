@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\VisualOthello\MaxAI.cpp" />
     <ClCompile Include="..\VisualOthello\RandomAI.cpp" />
     <ClCompile Include="..\VisualOthello\Game.cpp" />
     <ClCompile Include="..\VisualOthello\PersonPlayer.cpp" />
@@ -146,8 +147,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\VisualOthello\GameConsole.h" />
+    <ClInclude Include="..\VisualOthello\MaxAI.h" />
     <ClInclude Include="..\VisualOthello\RandomAI.h" />
-    <ClInclude Include="..\VisualOthello\Game.h" />
     <ClInclude Include="..\VisualOthello\PersonPlayer.h" />
     <ClInclude Include="..\VisualOthello\Player.h" />
     <ClInclude Include="..\VisualOthello\Type.h" />
