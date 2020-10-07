@@ -17,4 +17,5 @@ public:
 	bool can_put(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);
 	BoardStatus get_enemy(BoardStatus player);
 	std::string get_name();
+	int can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);
 };

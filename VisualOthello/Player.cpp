@@ -68,3 +68,37 @@ std::string Player::get_name()
 {
 	return this->name;
 }
+
+int Player::can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board)
+{
+	int can_get_num = 0;
+	// ã‚©‚çŒv‰ñ‚è
+	const int dx[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
+	const int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+	const BoardStatus enemy = Player::get_enemy(player);
+
+	for (int i = 0; i < 8; i++)
+	{
+		bool line_flag = false;
+		int delta = 1;
+
+		// — •Ô‚¹‚é‚©
+		while (board[(long)coordinate.y + dy[i] * delta][(long)coordinate.x + dx[i] * delta] == enemy)
+		{
+			++delta;
+		}
+
+		if (delta >= 2 && board[(long)coordinate.y + dy[i] * delta][(long)coordinate.x + dx[i] * delta] == player)
+		{
+			line_flag = true;
+		}
+
+		// — •Ô‚¹‚é•ûŒü‚È‚ç
+		if (line_flag)
+		{
+			can_get_num += delta - 1;
+		}
+	}
+
+	return can_get_num;
+}
