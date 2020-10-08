@@ -121,10 +121,10 @@
 	1. 実行する(Ctrl + F5)
 
 ## プログラム内で使える列挙体、構造体
+- 宣言はType.hにある。
 ### BoardStatus
-- calc関数に引数として渡されるboardは10x10のvectorで出来ている
+- calc関数に引数として渡されるboardは10x10のstd::vectorで出来ている
 - boardの外側1行と1列は`WALL`で埋められている
-BoardStatusで管理される
 ``` cpp
 enum BoardStatus
 {
@@ -134,7 +134,15 @@ enum BoardStatus
 	WALL
 };
 ```
+|名前|意味|
+|:-:|:-:|
+|Player1|白いコマが有るマスを表す。Console OthelloではOで表示される。|
+|Player2|黒いコマが有るマスを表す。Console OthelloではXで表示される。|
+|NONE|何も置いていないマスを表す。|
+|WALL|board外側を囲む|
 
+### GameStatus
+- Console Othelloでのみ使われている。
 ```cpp
 enum GameStatus
 {
@@ -143,6 +151,9 @@ enum GameStatus
 	PASS
 };
 ```
+
+### Coordinate
+- 座標を表す構造体。
 ```cpp
 struct Coordinate
 {
