@@ -1,6 +1,7 @@
 ﻿#include "Game.h"
 #include "Player.h"
 #include "RandomAI.h"
+#include "MaxAI.h"
 #include <Siv3D.hpp>
 
 void cvt_char32(char *str, char32_t *str32);
@@ -14,7 +15,8 @@ void Main(void)
 	double time = 0.0;
 	bool finish_flag = false;
 
-	RandomAI player1(std::string("Left Up AI")), player2(std::string("Random AI"));
+	RandomAI player1(std::string("Left Up AI"));
+	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
 
 	game.start();
@@ -35,6 +37,7 @@ void Main(void)
 		{
 			if (!finish_flag)
 			{
+				ClearPrint();
 				if (!game.is_finished())
 				{
 					// そのターンでnow_turn_playerが置けるかの判別
@@ -73,7 +76,7 @@ void Main(void)
 				}
 				else
 				{
-					winner = game.game_over(font);
+					winner = game.game_over();
 					finish_flag = true;
 				}
 			}

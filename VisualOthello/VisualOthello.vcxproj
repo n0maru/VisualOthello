@@ -109,9 +109,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameVisual.cpp" />
+    <ClCompile Include="MaxAI.cpp" />
     <ClCompile Include="RandomAI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Replay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -238,9 +240,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MaxAI.h" />
     <ClInclude Include="RandomAI.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Replay.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

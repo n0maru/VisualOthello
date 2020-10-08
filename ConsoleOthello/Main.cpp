@@ -1,13 +1,15 @@
-﻿#include "..\VisualOthello\Game.h"
+﻿#include "..\VisualOthello\GameConsole.h"
 #include "..\VisualOthello\PersonPlayer.h"
 #include "..\VisualOthello\RandomAI.h"
+#include "..\VisualOthello\MaxAI.h"
 #include <windows.h>
 
 // TODO: リプレイ機能の追加
 
 int main(void)
 {
-	RandomAI player1(std::string("Left Top AI")), player2(std::string("Random AI"));
+	RandomAI player1(std::string("Left Top AI"));
+	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
 
 	game.start();
