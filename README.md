@@ -120,6 +120,17 @@
 	1. ConsoleOthelloをスタートアッププロジェクトに設定する
 	1. 実行する(Ctrl + F5)
 
+## ConsoleOthelloプロジェクトで AI VS 人をする方法
+1. main関数を変更する
+	- main関数内のplayer1またはplayer2の宣言、初期化を以下のように書き換える。(player2を書き換える例)
+	```cpp
+	PersonPlayer player2(std::string("Name"));
+	```
+
+1. 実行する
+	1. ConsoleOthelloをスタートアッププロジェクトに設定する
+	1. 実行する(Ctrl + F5)
+	
 ## プログラム内で使える列挙体、構造体
 - 宣言はType.hにある。
 ### BoardStatus
