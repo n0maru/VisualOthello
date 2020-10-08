@@ -1,3 +1,21 @@
+# 目次
+
+- [目次](#目次)
+- [開発環境](#開発環境)
+- [ツール](#ツール)
+- [言語](#言語)
+- [各プロジェクト](#各プロジェクト)
+    - [ConsoleOthello](#consoleothello)
+    - [VisualOthello](#visualothello)
+- [新しいAIクラスを作る](#新しいaiクラスを作る)
+- [ConsoleOthelloプロジェクトで実行するには](#consoleothelloプロジェクトで実行するには)
+- [ConsoleOthelloプロジェクトで AI VS 人をする方法](#consoleothelloプロジェクトで-ai-vs-人をする方法)
+- [プログラム内で使える列挙体、構造体](#プログラム内で使える列挙体構造体)
+     - [BoardStatus列挙体](#boardstatus)
+     - [GameStatus列挙体](#gamestatus)
+	 - [Coordinate構造体](#coordinate)
+- [Playerクラス](#playerクラス)
+
 # 開発環境
 ## ツール
 - Visual Studio 2019
@@ -15,7 +33,7 @@
 ## VisualOthello
 - AI VS AI 用プロジェクト
 
-## 新しいAIクラスを作る
+# 新しいAIクラスを作る
 1. ソリューションエクスプローラーのVisualOthello上で右クリック
 1. 追加 > 新しい項目 でC++クラスを選択し、名前を自分のAI名にして追加を押す
 1. 次の画面で基底クラスにPlayerと書き、OKを押す
@@ -103,7 +121,7 @@
 	1. 実行する(Ctrl + F5)
 
 
-## ConsoleOthelloプロジェクトで実行するには
+# ConsoleOthelloプロジェクトで実行するには
 1. main関数を変更する
 	- ConsoleOthelloプロジェクト内のmain関数をVisualOthelloのmain関数と同様に変更する
 
@@ -120,7 +138,7 @@
 	1. ConsoleOthelloをスタートアッププロジェクトに設定する
 	1. 実行する(Ctrl + F5)
 
-## ConsoleOthelloプロジェクトで AI VS 人をする方法
+# ConsoleOthelloプロジェクトで AI VS 人をする方法
 1. main関数を変更する
 	- main関数内のplayer1またはplayer2の宣言、初期化を以下のように書き換える。(player2を書き換える例)
 	```cpp
@@ -130,10 +148,10 @@
 1. 実行する
 	1. ConsoleOthelloをスタートアッププロジェクトに設定する
 	1. 実行する(Ctrl + F5)
-	
-## プログラム内で使える列挙体、構造体
+
+# プログラム内で使える列挙体、構造体
 - 宣言はType.hにある。
-### BoardStatus
+## BoardStatus列挙体
 - calc関数に引数として渡されるboardは10x10のstd::vectorで出来ている
 - boardの外側1行と1列は`WALL`で埋められている
 ``` cpp
@@ -152,7 +170,7 @@ enum BoardStatus
 |NONE|何も置いていないマスを表す。|
 |WALL|board外側を囲む|
 
-### GameStatus
+## GameStatus列挙体
 - Console Othelloでのみ使われている。
 ```cpp
 enum GameStatus
@@ -163,7 +181,7 @@ enum GameStatus
 };
 ```
 
-### Coordinate
+## Coordinate構造体
 - 座標を表す構造体。
 ```cpp
 struct Coordinate
@@ -173,7 +191,7 @@ struct Coordinate
 };
 ```
 
-## Playerクラス
+# Playerクラスの関数
 - 上記のように作れるAIのクラスはPlayerクラス(抽象クラス)を継承している。
 - そのため、AIのクラスの関数内ではPlayerクラスの持つ関数を使用することが出来る。以下に示す。
 - 実装はVisualOthello内のPlayer.cppでいることが出来る
