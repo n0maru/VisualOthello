@@ -99,9 +99,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -112,6 +109,9 @@
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="MaxAI.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MainVisual.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>

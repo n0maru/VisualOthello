@@ -1,10 +1,10 @@
-ï»¿#include "..\VisualOthello\GameConsole.h"
-#include "..\VisualOthello\PersonPlayer.h"
-#include "..\VisualOthello\RandomAI.h"
-#include "..\VisualOthello\MaxAI.h"
+#include "GameConsole.h"
+#include "PersonPlayer.h"
+#include "RandomAI.h"
+#include "MaxAI.h"
 #include <windows.h>
 
-// TODO: ãƒªãƒ—ãƒ¬ã‚¤æ©Ÿèƒ½ã®è¿½åŠ 
+// TODO: ƒŠƒvƒŒƒC‹@”\‚Ì’Ç‰Á
 
 int main(void)
 {
@@ -21,7 +21,7 @@ int main(void)
 		Sleep(0.5 * 1000);
 		game.print_board(now_turn_player);
 
-		// ãã®ã‚¿ãƒ¼ãƒ³ã§now_turn_playerãŒç½®ã‘ã‚‹ã‹ã®åˆ¤åˆ¥
+		// ‚»‚Ìƒ^[ƒ“‚Ånow_turn_player‚ª’u‚¯‚é‚©‚Ì”»•Ê
 		bool can_put_flag = false;
 		for (int y = 1; !can_put_flag && y <= 8; y++)
 		{
@@ -40,16 +40,16 @@ int main(void)
 
 			if (game.set_stone(input, now_turn_player))
 			{
-				std::cout << "ç½®ãã¾ã—ãŸ" << std::endl;
+				std::cout << "’u‚«‚Ü‚µ‚½" << std::endl;
 			}
 			else
 			{
-				std::cout << "ç½®ã‘ã¾ã›ã‚“ã§ã—ãŸ" << std::endl;
+				std::cout << "’u‚¯‚Ü‚¹‚ñ‚Å‚µ‚½" << std::endl;
 			}
 		}
 		else
 		{
-			std::cout << "ãƒ‘ã‚¹ã—ã¾ã—ãŸ" << std::endl;
+			std::cout << "ƒpƒX‚µ‚Ü‚µ‚½" << std::endl;
 		}
 
 		now_turn_player = game.get_enemy(now_turn_player);

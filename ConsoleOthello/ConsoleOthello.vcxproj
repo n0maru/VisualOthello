@@ -139,12 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\VisualOthello\MainConsole.cpp" />
     <ClCompile Include="..\VisualOthello\MaxAI.cpp" />
     <ClCompile Include="..\VisualOthello\RandomAI.cpp" />
-    <ClCompile Include="..\VisualOthello\Game.cpp" />
+    <ClCompile Include="..\VisualOthello\GameConsole.cpp" />
     <ClCompile Include="..\VisualOthello\PersonPlayer.cpp" />
     <ClCompile Include="..\VisualOthello\Player.cpp" />
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\VisualOthello\GameConsole.h" />

@@ -111,7 +111,7 @@
     <ClCompile Include="GameVisual.cpp" />
     <ClCompile Include="MaxAI.cpp" />
     <ClCompile Include="RandomAI.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainVisual.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
