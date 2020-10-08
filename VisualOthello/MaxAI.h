@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+
 class MaxAI : public Player
 {
 public:

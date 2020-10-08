@@ -166,6 +166,8 @@ void Game::game_over()
 	{
 		std::cout << "Draw" << std::endl;
 	}
+
+	std::cout << "First player is " << this->player_str[this->first_player] << std::endl;
 }
 
 bool Game::can_put(Coordinate coordinate, BoardStatus player)
