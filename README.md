@@ -119,3 +119,50 @@
 1. 実行する
 	1. ConsoleOthelloをスタートアッププロジェクトに設定する
 	1. 実行する(Ctrl + F5)
+
+## プログラム内で使える列挙体、構造体
+### BoardStatus
+- calc関数に引数として渡されるboardは10x10のvectorで出来ている
+- boardの外側1行と1列は`WALL`で埋められている
+BoardStatusで管理される
+``` cpp
+enum BoardStatus
+{
+	Player1,
+	Player2,
+	NONE,
+	WALL
+};
+```
+
+```cpp
+enum GameStatus
+{
+	SET,
+	CANNOT_SET,
+	PASS
+};
+```
+```cpp
+struct Coordinate
+{
+	int x;
+	int y;
+};
+```
+
+## Playerクラス
+- 上記のように作れるAIのクラスはPlayerクラス(抽象クラス)を継承している。
+- そのため、AIのクラスの関数内ではPlayerクラスの持つ関数を使用することが出来る。以下に示す。
+- 実装はVisualOthello内のPlayer.cppでいることが出来る
+
+|プロトタイプ宣言|説明|
+|:-:|:-:|
+|Player(std::string name);|Playerクラスのコンストラクタ。使わない|
+|Coordinate calc(std::vector<std::vector<BoardStatus>> board);|AIのクラスでのcalc関数でオーバーライドされる。使わない。|
+|void set_player_num(BoardStatus player_num);|使用禁止|
+|bool is_inside(Coordinate coordinate);|coordinateのさす座標が盤面内ならtrue、盤面外ならfalseを返す|
+|bool can_put(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);|board内の座標coordinateにplayerが置けるならtrue、置けないならfalseを返す|
+|BoardStatus get_enemy(BoardStatus player);|playerの敵AIのBoardStatusを返す|
+|std::string get_name();|AIの名前を返す。使わない|
+|int can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);|board内の座標coordinateにplayerのコマを置いたときに裏返すことのできるコマの数を返す|
