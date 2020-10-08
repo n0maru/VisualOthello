@@ -111,9 +111,6 @@
     <ClCompile Include="GameVisual.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Replay.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="MaxAI.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -394,19 +391,16 @@
     <ClInclude Include="Player.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Type.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="RandomAI.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Replay.h">
+    <ClInclude Include="MaxAI.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MaxAI.h">
+    <ClInclude Include="Type.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>
