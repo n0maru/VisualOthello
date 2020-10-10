@@ -15,6 +15,7 @@
      - [GameStatus列挙体](#gamestatus列挙体)
 	 - [Coordinate構造体](#coordinate構造体)
 - [Playerクラスの関数](#playerクラスの関数)
+- [各クラスの関係](#各クラスの関係)
 
 # 開発環境
 ## ツール
@@ -28,6 +29,7 @@
 各プロジェクトは「スタートアッププロジェクトに設定する」をしてから実行する
 ## ConsoleOthello
 - 開発者 VS AI が出来るデバッグ用プロジェクト
+- 開発者 VS 開発者も出来る
 - AI VS AI も出来る
 - これらはプロジェクト内の`Main.cpp`を変更する事で変更できる
 ## VisualOthello
@@ -206,3 +208,13 @@ struct Coordinate
 |`BoardStatus get_enemy(BoardStatus player);`|playerの敵AIのBoardStatusを返す|
 |`std::string get_name();`|AIの名前を返す。使わない|
 |`int can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);`|board内の座標coordinateにplayerのコマを置いたときに裏返すことのできるコマの数を返す|
+
+# 各クラスの関係
+|クラス|Visual Othello|Console Othello|内容|親クラス|
+|:-:|:-:|:-:|:-:|:-:|
+|Gameクラス|GameVisual.h / GameVisual.cpp|GameConsole.h / GameConsole.cpp|オセロの試合を制御する|なし|
+|Playerクラス|Player.h / Player.cpp|Player.h / Player.cpp|AIのクラス。各AIのクラスはPlayerクラスを継承して作られる|なし|
+|PersonPlayerクラス|PersonPlayer.h / PersonPlayer.cpp|PersonPlayer.h / PersonPlayer.cpp|人がプレーするためのクラス|Playerクラス|
+|RandomAIクラス|RandomAI.h / RandomAI.cpp|RandomAI.h / RandomAI.cpp|左上から走査して置ける場所を見つけたら置けるAI|Playerクラス|
+|MaxAIクラス|MaxAI.h / Max.cpp|MaxAI.h / Max.cpp|置けるマスの中で一番沢山裏返せるマスに置くAI|Playerクラス|
+||Type.h|Type.h|列挙体、構造体が定義されている|なし|
