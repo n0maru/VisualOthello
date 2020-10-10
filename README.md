@@ -11,10 +11,10 @@
 - [ConsoleOthelloプロジェクトで実行するには](#consoleothelloプロジェクトで実行するには)
 - [ConsoleOthelloプロジェクトで AI VS 人をする方法](#consoleothelloプロジェクトで-ai-vs-人をする方法)
 - [プログラム内で使える列挙体、構造体](#プログラム内で使える列挙体構造体)
-     - [BoardStatus列挙体](#boardstatus)
-     - [GameStatus列挙体](#gamestatus)
-	 - [Coordinate構造体](#coordinate)
-- [Playerクラス](#playerクラス)
+     - [BoardStatus列挙体](#boardstatus列挙体)
+     - [GameStatus列挙体](#gamestatus列挙体)
+	 - [Coordinate構造体](#coordinate構造体)
+- [Playerクラスの関数](#playerクラスの関数)
 
 # 開発環境
 ## ツール
@@ -198,11 +198,11 @@ struct Coordinate
 
 |プロトタイプ宣言|説明|
 |:-:|:-:|
-|Player(std::string name);|Playerクラスのコンストラクタ。使わない|
-|Coordinate calc(std::vector<std::vector<BoardStatus>> board);|AIのクラスでのcalc関数でオーバーライドされる。使わない。|
-|void set_player_num(BoardStatus player_num);|使用禁止|
-|bool is_inside(Coordinate coordinate);|coordinateのさす座標が盤面内ならtrue、盤面外ならfalseを返す|
-|bool can_put(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);|board内の座標coordinateにplayerが置けるならtrue、置けないならfalseを返す|
-|BoardStatus get_enemy(BoardStatus player);|playerの敵AIのBoardStatusを返す|
-|std::string get_name();|AIの名前を返す。使わない|
-|int can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);|board内の座標coordinateにplayerのコマを置いたときに裏返すことのできるコマの数を返す|
+|`Player(std::string name);`|Playerクラスのコンストラクタ。使わない|
+|`Coordinate calc(std::vector<std::vector<BoardStatus>> board);`|AIのクラスでのcalc関数でオーバーライドされる。使わない。|
+|`void set_player_num(BoardStatus player_num);`|使用禁止|
+|`bool is_inside(Coordinate coordinate);`|coordinateのさす座標が盤面内ならtrue、盤面外ならfalseを返す|
+|`bool can_put(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);`|board内の座標coordinateにplayerが置けるならtrue、置けないならfalseを返す|
+|`BoardStatus get_enemy(BoardStatus player);`|playerの敵AIのBoardStatusを返す|
+|`std::string get_name();`|AIの名前を返す。使わない|
+|`int can_get_num(Coordinate coordinate, BoardStatus player, std::vector<std::vector<BoardStatus>> board);`|board内の座標coordinateにplayerのコマを置いたときに裏返すことのできるコマの数を返す|
