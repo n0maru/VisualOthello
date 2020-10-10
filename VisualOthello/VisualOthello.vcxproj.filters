@@ -391,9 +391,6 @@
     <ClInclude Include="Player.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
     <ClInclude Include="RandomAI.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
@@ -401,6 +398,9 @@
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="Type.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameVisual.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

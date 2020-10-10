@@ -241,7 +241,7 @@
   <ItemGroup>
     <ClInclude Include="MaxAI.h" />
     <ClInclude Include="RandomAI.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameVisual.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
