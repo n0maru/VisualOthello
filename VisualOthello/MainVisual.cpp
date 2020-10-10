@@ -1,10 +1,10 @@
-﻿#include "Game.h"
+﻿#include "GameVisual.h"
 #include "Player.h"
 #include "RandomAI.h"
 #include "MaxAI.h"
 #include <Siv3D.hpp>
 
-void cvt_char32(char *str, char32_t *str32);
+// TODO: カウントダウンの追加
 
 void Main(void)
 {
@@ -83,13 +83,5 @@ void Main(void)
 
 			time = 0.0;
 		}
-	}
-}
-
-void cvt_char32(char* str, char32_t* str32)
-{
-	for (int i = 0; i < 8; i++)
-	{
-		str32[i] = str[i];
 	}
 }
