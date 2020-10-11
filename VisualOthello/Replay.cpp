@@ -209,7 +209,7 @@ void Replay::show_board()
 
 void Replay::update_board()
 {
-	if (this->all_turn - this->now_turn >= 2) this->now_turn++;
+	if (this->all_turn - this->now_turn > 1) this->now_turn++;
 }
 
 void Replay::print_first_turn(Font font)

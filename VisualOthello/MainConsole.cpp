@@ -67,6 +67,7 @@ int main(void)
 	}
 
 	game.print_board(now_turn_player);
+	replay.record_board(game.get_board(), game_status);
 
 	game.game_over();
 }
