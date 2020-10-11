@@ -9,13 +9,8 @@ class Replay
 {
 private:
 	std::string filename;
-	int now_turn;
-
-	int all_turn;
 	BoardStatus first_player;
 	std::vector<std::string> players;
-
-	std::vector<std::vector<std::vector<BoardStatus>>> board_data;
 
 	bool record(std::string str);
 public:

@@ -11,7 +11,7 @@ void Main(void)
 	const double LapTime = 0.5;
 	double time = 0.0;
 
-	Replay replay("D:/replayC.txt");
+	Replay replay("D:/replay.txt");
 	replay.load_game();
 
 	bool stop_flag = false;

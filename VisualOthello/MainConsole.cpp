@@ -13,10 +13,10 @@ int main(void)
 	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
 
+	game.start();
+
 	Replay replay("D:/replayC.txt");
 	replay.set_game_info(player1.get_name(), player2.get_name(), game.get_first_player());
-
-	game.start();
 
 	BoardStatus now_turn_player = game.get_first_player();
 	GameStatus game_status = SET;

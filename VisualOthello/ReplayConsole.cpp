@@ -19,11 +19,8 @@ bool Replay::record(std::string str)
 Replay::Replay(std::string filename)
 {
 	this->filename = filename;
-
+	this->first_player = Player1;
 	this->players.resize(2);
-
-	this->all_turn = 0;
-	this->now_turn = 0;
 }
 
 std::vector<std::vector<BoardStatus>> Replay::string_to_board(std::string str)
