@@ -2,6 +2,7 @@
 #include "PersonPlayer.h"
 #include "RandomAI.h"
 #include "MaxAI.h"
+#include "ReplayConsole.h"
 #include <windows.h>
 
 // TODO: リプレイ機能の追加
@@ -12,12 +13,18 @@ int main(void)
 	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
 
+	Replay replay("D:/replayC.txt");
+	replay.set_game_info(player1.get_name(), player2.get_name(), game.get_first_player());
+
 	game.start();
 
 	BoardStatus now_turn_player = game.get_first_player();
 
 	while (!game.is_finished())
 	{
+		//盤面の記録
+		replay.record_board(game.get_board());
+
 		Sleep(0.5 * 1000);
 		game.print_board(now_turn_player);
 

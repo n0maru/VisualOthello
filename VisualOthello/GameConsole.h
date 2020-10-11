@@ -31,4 +31,5 @@ public:
 	Coordinate calc(BoardStatus now_turn_player);
 	GameStatus get_game_status();
 	int count_point(BoardStatus player);
+	std::vector<std::vector<BoardStatus>> get_board();
 };

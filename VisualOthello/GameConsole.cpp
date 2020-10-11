@@ -275,3 +275,8 @@ int Game::count_point(BoardStatus player)
 
 	return count;
 }
+
+std::vector<std::vector<BoardStatus>> Game::get_board()
+{
+	return this->board;
+}
