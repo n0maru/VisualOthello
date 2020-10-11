@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <Siv3D.hpp>
 #include "Type.h"
 #include "GameVisual.h"
 
@@ -29,5 +30,6 @@ public:
 
 	bool load_game();
 	int count_point(BoardStatus player, std::vector<std::vector<BoardStatus>> board);
-	std::vector<std::vector<BoardStatus>> show_board();
+	void show_board();
+	void update_board();
 };

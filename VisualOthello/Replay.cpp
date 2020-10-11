@@ -20,19 +20,27 @@ Replay::Replay(std::string filename)
 {
 	this->filename = filename;
 
+	this->first_player = Player1;
 	this->players.resize(2);
 
 	this->all_turn = 0;
 	this->now_turn = 0;
 
-	std::ofstream fout(this->filename);
-	fout.close();
+	this->board_data.resize(100);
+	for (int i = 0; i < 100; i++)
+	{
+		this->board_data[i].resize(10);
+		for (int j = 0; j < 10; j++)
+		{
+			this->board_data[i][j].resize(10);
+		}
+	}
 }
 
 std::vector<std::vector<BoardStatus>> Replay::string_to_board(std::string str)
 {
 	int idx = 0;
-	std::vector<std::vector<BoardStatus>> board(10, std::vector<BoardStatus>(10));
+	std::vector<std::vector<BoardStatus>> board(10, std::vector<BoardStatus>(10, NONE));
 
 	for (int y = 0; y < 10; y++)
 	{
@@ -65,6 +73,9 @@ bool Replay::set_game_info(std::string player1_name, std::string player2_name, B
 	this->players[0] = player1_name;
 	this->players[1] = player2_name;
 	this->first_player = first_player;
+
+	std::ofstream fout(this->filename);
+	fout.close();
 
 	return Replay::record_game_info();
 }
@@ -126,9 +137,9 @@ bool Replay::load_game()
 	this->all_turn = 0;
 	while (getline(fin, line))
 	{
-		this->board_data[all_turn] = Replay::string_to_board(line);
+		this->board_data[this->all_turn] = Replay::string_to_board(line);
 
-		all_turn++;
+		this->all_turn++;
 	}
 
 	fin.close();
@@ -153,7 +164,42 @@ int Replay::count_point(BoardStatus player, std::vector<std::vector<BoardStatus>
 	return count;
 }
 
-std::vector<std::vector<BoardStatus>> Replay::show_board()
+void Replay::show_board()
 {
-	return this->board_data[now_turn++];
+	int size = 50;
+	int start = 100;
+	int r = size / 2;
+
+	// 線を黒色にする
+	Rect(start - 1, start - 1, size * 8 + 9).draw(Palette::Black);
+
+	// 盤面の描画
+	for (int y = 1; y <= 8; y++)
+	{
+		for (int x = 1; x <= 8; x++)
+		{
+			Rect(start + (x - 1) * size + x - 1, start + (y - 1) * size + y - 1, size).draw(Palette::Green);
+
+			// コマを置く
+			switch (this->board_data[this->now_turn][y][x])
+			{
+			case NONE:
+				break;
+			case Player1:
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::White);
+				break;
+			case Player2:
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::Black);
+				break;
+			default:
+				Circle(start + (x - 1) * size + x - 1 + r, start + (y - 1) * size + y - 1 + r, r).draw(Palette::Red);
+				break;
+			}
+		}
+	}
+}
+
+void Replay::update_board()
+{
+	if (this->all_turn - this->now_turn >= 2) this->now_turn++;
 }
