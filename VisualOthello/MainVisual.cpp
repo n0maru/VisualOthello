@@ -42,7 +42,7 @@ void Main(void)
 			if (!finish_flag)
 			{
 				// 盤面の保存
-				replay.record_board(game.get_board());
+				replay.record_board(game.get_board(), game.get_game_status());
 
 				ClearPrint();
 				if (!game.is_finished())

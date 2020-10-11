@@ -35,6 +35,8 @@ Replay::Replay(std::string filename)
 			this->board_data[i][j].resize(10);
 		}
 	}
+
+	this->game_status.resize(100);
 }
 
 std::vector<std::vector<BoardStatus>> Replay::string_to_board(std::string str)
@@ -94,9 +96,12 @@ bool Replay::record_game_info()
 	return Replay::record(str);
 }
 
-bool Replay::record_board(std::vector<std::vector<BoardStatus>> board)
+bool Replay::record_board(std::vector<std::vector<BoardStatus>> board, GameStatus game_status)
 {
 	std::string str = Replay::board_to_string(board);
+
+	str += ':';
+	str += (char)(game_status + '0');
 
 	return Replay::record(str);
 }
@@ -137,7 +142,10 @@ bool Replay::load_game()
 	this->all_turn = 0;
 	while (getline(fin, line))
 	{
-		this->board_data[this->all_turn] = Replay::string_to_board(line);
+		//盤面の読み込み
+		this->board_data[this->all_turn] = Replay::string_to_board(line.substr(0, 100));
+		// Game Status
+		this->game_status[this->all_turn] = (GameStatus)(line[101] - '0');
 
 		this->all_turn++;
 	}
@@ -202,4 +210,67 @@ void Replay::show_board()
 void Replay::update_board()
 {
 	if (this->all_turn - this->now_turn >= 2) this->now_turn++;
+}
+
+void Replay::print_first_turn(Font font)
+{
+	font(U"先行は ").drawAt(570, 100);
+	Color color = (this->first_player == Player1) ? Palette::White : Palette::Black;
+	Replay::print_name(this->players[this->first_player], font, 650, 100, color);
+}
+
+void Replay::print_name(std::string name, Font font, int x, int y)
+{
+	Replay::print_name(name, font, x, y, Palette::White);
+}
+
+void Replay::print_name(std::string name, Font font, int x, int y, Color color)
+{
+	char32_t name_char32[100] = { '\n' };
+
+	for (int i = 0; i < name.size(); i++)
+	{
+		name_char32[i] = name[i];
+	}
+
+	font(name_char32).drawAt(x, y, color);
+}
+
+void Replay::print_info(Font font)
+{
+	font(U"White").drawAt(570, 250);
+	font(U"Black").drawAt(720, 250, Palette::Black);
+
+	Replay::print_name(this->players[0], font, 570, 280);
+	Replay::print_name(this->players[1], font, 720, 280, Palette::Black);
+
+	font(Replay::count_point(Player1, this->board_data[this->now_turn])).drawAt(570, 310);
+	font(Replay::count_point(Player2, this->board_data[this->now_turn])).drawAt(720, 310, Palette::Black);
+}
+
+void Replay::print_winner(Font font, BoardStatus winner)
+{
+	if (winner == NONE)
+	{
+		font(U"Draw ! !").drawAt(570, 400);
+	}
+	else
+	{
+		font(U"Winner is ").drawAt(570, 400);
+		Replay::print_name(this->players[winner], font, 680, 400);
+	}
+}
+
+void Replay::print_status(Font font)
+{
+	int player = (this->now_turn % 2 == 0) ? this->first_player : 1 - this->first_player;
+	Replay::print_name(this->players[player], font, 570, 400);
+
+	char32_t status_str[][10] = {
+		U"置きました",
+		U"置けませんでした",
+		U"パスしました"
+	};
+
+	font(U" :", status_str[this->game_status[this->now_turn]]).drawAt(700, 400);
 }
