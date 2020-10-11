@@ -19,11 +19,12 @@ int main(void)
 	game.start();
 
 	BoardStatus now_turn_player = game.get_first_player();
+	GameStatus game_status = PASS;
 
 	while (!game.is_finished())
 	{
 		//盤面の記録
-		replay.record_board(game.get_board());
+		replay.record_board(game.get_board(), game_status);
 
 		Sleep(0.5 * 1000);
 		game.print_board(now_turn_player);
@@ -48,15 +49,18 @@ int main(void)
 			if (game.set_stone(input, now_turn_player))
 			{
 				std::cout << "置きました" << std::endl;
+				game_status = SET;
 			}
 			else
 			{
 				std::cout << "置けませんでした" << std::endl;
+				game_status = CANNOT_SET;
 			}
 		}
 		else
 		{
 			std::cout << "パスしました" << std::endl;
+			game_status = PASS;
 		}
 
 		now_turn_player = game.get_enemy(now_turn_player);

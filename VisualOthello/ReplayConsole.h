@@ -25,9 +25,5 @@ public:
 
 	bool set_game_info(std::string player1_name, std::string player2_name, BoardStatus first_player);
 	bool record_game_info();
-	bool record_board(std::vector<std::vector<BoardStatus>> board);
-
-	bool load_game();
-	int count_point(BoardStatus player, std::vector<std::vector<BoardStatus>> board);
-	std::vector<std::vector<BoardStatus>> show_board();
+	bool record_board(std::vector<std::vector<BoardStatus>> board, GameStatus game_status);
 };
