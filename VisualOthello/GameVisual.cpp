@@ -10,14 +10,14 @@ Game::Game(Player* player1, Player* player2)
 		this->board[y].resize(10);
 		for (int x = 0; x < 10; x++)
 		{
-			if (x == 0 || x == 10 || y == 0 || y == 10)
-			{
-				this->board[y][x] = WALL;
-			}
-			else
-			{
-				this->board[y][x] = NONE;
-			}
+			this->board[y][x] = WALL;
+		}
+	}
+	for (int y = 1; y <= 8; y++)
+	{
+		for (int x = 1; x <= 8; x++)
+		{
+			this->board[y][x] = NONE;
 		}
 	}
 
