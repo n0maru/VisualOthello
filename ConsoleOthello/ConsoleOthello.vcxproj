@@ -145,6 +145,7 @@
     <ClCompile Include="..\VisualOthello\GameConsole.cpp" />
     <ClCompile Include="..\VisualOthello\PersonPlayer.cpp" />
     <ClCompile Include="..\VisualOthello\Player.cpp" />
+    <ClCompile Include="..\VisualOthello\ReplayConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\VisualOthello\GameConsole.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="..\VisualOthello\RandomAI.h" />
     <ClInclude Include="..\VisualOthello\PersonPlayer.h" />
     <ClInclude Include="..\VisualOthello\Player.h" />
+    <ClInclude Include="..\VisualOthello\ReplayConsole.h" />
     <ClInclude Include="..\VisualOthello\Type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
