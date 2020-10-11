@@ -47,7 +47,7 @@ Game::Game(Player* player1, Player* player2)
 	}
 
 	// game status
-	this->game_status = PASS;
+	this->game_status = SET;
 }
 
 void Game::start()

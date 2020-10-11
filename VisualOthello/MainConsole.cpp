@@ -19,7 +19,7 @@ int main(void)
 	game.start();
 
 	BoardStatus now_turn_player = game.get_first_player();
-	GameStatus game_status = PASS;
+	GameStatus game_status = SET;
 
 	while (!game.is_finished())
 	{
