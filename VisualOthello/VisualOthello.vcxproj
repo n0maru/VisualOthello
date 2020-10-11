@@ -113,6 +113,7 @@
     <ClCompile Include="RandomAI.cpp" />
     <ClCompile Include="MainVisual.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Replay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -243,6 +244,7 @@
     <ClInclude Include="RandomAI.h" />
     <ClInclude Include="GameVisual.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Replay.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

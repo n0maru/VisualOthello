@@ -1,5 +1,5 @@
-#include "Game.h"
 #include <Siv3D.hpp>
+#include "GameVisual.h"
 
 Game::Game(Player* player1, Player* player2)
 {
@@ -328,4 +328,9 @@ int Game::count_point(BoardStatus player)
 GameStatus Game::get_game_status()
 {
 	return this->game_status;
+}
+
+std::vector<std::vector<BoardStatus>> Game::get_board()
+{
+	return this->board;
 }

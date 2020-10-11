@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "RandomAI.h"
 #include "MaxAI.h"
+#include "Replay.h"
 #include <Siv3D.hpp>
 
 // TODO: カウントダウンの追加
@@ -18,6 +19,9 @@ void Main(void)
 	RandomAI player1(std::string("Left Up AI"));
 	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
+
+	Replay replay("D:/replay.txt");
+	replay.set_game_info(player1.get_name(), player2.get_name(), game.get_first_player());
 
 	game.start();
 	BoardStatus now_turn_player = game.get_first_player();
@@ -37,6 +41,9 @@ void Main(void)
 		{
 			if (!finish_flag)
 			{
+				// 盤面の保存
+				replay.record_board(game.get_board());
+
 				ClearPrint();
 				if (!game.is_finished())
 				{
