@@ -7,9 +7,12 @@
 - [各プロジェクト](#各プロジェクト)
     - [ConsoleOthello](#consoleothello)
     - [VisualOthello](#visualothello)
+	- [Replay](#Replay)
 - [新しいAIクラスを作る](#新しいaiクラスを作る)
 - [ConsoleOthelloプロジェクトで実行するには](#consoleothelloプロジェクトで実行するには)
 - [ConsoleOthelloプロジェクトで AI VS 人をする方法](#consoleothelloプロジェクトで-ai-vs-人をする方法)
+- [保存したリプレイを再生する方法](#保存したリプレイを再生する方法)
+- [リプレイ保存先ファイルの変更](#リプレイ保存先ファイルの変更)
 - [プログラム内で使える列挙体、構造体](#プログラム内で使える列挙体構造体)
      - [BoardStatus列挙体](#boardstatus列挙体)
      - [GameStatus列挙体](#gamestatus列挙体)
@@ -34,6 +37,9 @@
 - これらはプロジェクト内の`Main.cpp`を変更する事で変更できる
 ## VisualOthello
 - AI VS AI 用プロジェクト
+## Replay
+- ConsoleOthelloプロジェクトとVisualOthelloプロジェクトで行われた試合のリプレイを再生するためのプロジェクト
+- リプレイを保存する機能はConsoleOthelloプロジェクトとVisualOthelloプロジェクトにすでに存在している
 
 # 新しいAIクラスを作る
 1. ソリューションエクスプローラーのVisualOthello上で右クリック
@@ -150,6 +156,39 @@
 1. 実行する
 	1. ConsoleOthelloをスタートアッププロジェクトに設定する
 	1. 実行する(Ctrl + F5)
+
+# 保存したリプレイを再生する方法
+1. MainReplay.cpp(Replayプロジェクト)を書き換える
+	MainRepaly.cppの14行目を変更する
+	```cpp
+	Replay replay("D:/replay.txt");
+	```
+	上のコードは
+	```cpp
+	Replay replay("リプレイが保存されているファイル名");
+	```
+	の形式で書かれている
+
+	ここで書くリプレイが保存されているファイル名は実行より前に保存されている必要がある
+1. 実行する
+	1. Replayプロジェクトをスタートアッププロジェクトに設定する
+	1. 実行する(Ctrl + F5)
+
+# リプレイ保存先ファイルの変更
+- MainVisual.cpp(VisualOthelloプロジェクト)またはMainConsole.cpp(ConsoleOthelloプロジェクト)を書き換えることでリプレイ保存ファイルを変更できる
+- 保存先はテキストファイルがよい(拡張子：.txt)
+
+- MainVisual.cppの25行目を変更する
+```cpp
+Replay replay("D:/replay.txt");
+```
+上のコードは
+```cpp
+Replay replay("リプレイ保存先ファイル名");
+```
+の形式で書かれている
+
+ここで書くリプレイ保存先ファイル名は存在するファイルである必要はない(試合開始と同時にファイルが生成される)
 
 # プログラム内で使える列挙体、構造体
 - 宣言はType.hにある。
