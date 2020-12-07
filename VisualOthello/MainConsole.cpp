@@ -4,11 +4,14 @@
 #include "MaxAI.h"
 #include "ReplayConsole.h"
 #include <windows.h>
+#include <cstdlib>
+#include <ctime>
 
 // TODO: リプレイ機能の追加
 
 int main(void)
 {
+	srand((unsigned)time(NULL));
 	RandomAI player1(std::string("Left Top AI"));
 	MaxAI player2(std::string("Max AI"));
 	Game game(&player1, &player2);
@@ -53,8 +56,33 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "置けませんでした" << std::endl;
-				game_status = CANNOT_SET;
+				// 違法な場所にマスを置くようにしていしたら，ランダムなマスに置く
+				std::vector<Coordinate> can_put_list;
+
+				for (int y = 1; y <= 8; y++)
+				{
+					for (int x = 1; x <= 8; x++)
+					{
+						Coordinate c = { x, y };
+						if (game.can_put(c, now_turn_player))
+						{
+							can_put_list.push_back(c);
+						}
+					}
+				}
+
+				int r = rand() % can_put_list.size();
+
+				if (game.set_stone(can_put_list[r], now_turn_player))
+				{
+					std::cout << "ランダムに置きました" << std::endl;
+					game_status = SET;
+				}
+				else
+				{
+					std::cout << "置けませんでした" << std::endl;
+					game_status = CANNOT_SET;
+				}
 			}
 		}
 		else
