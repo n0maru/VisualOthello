@@ -8,4 +8,3 @@ public:
 	RandomAI(std::string name);
 	Coordinate calc(std::vector<std::vector<BoardStatus>> board);
 };
-
